@@ -80,7 +80,8 @@ db.session.add_all([fahrenheit_to_celsius, kelvin_to_fahrenheit, kelvin_to_celsi
 
 db.session.commit()
 
-#this part will be moved to the controller file
+#this part will be moved to the controller file, just here for testing right now
+#data manipulation/calculations will also be done in controller file
 @app.route('/')
 def initial_page():
 	return "Units Conversion CS365 Final Project."
