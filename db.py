@@ -2,13 +2,14 @@ from flask import Flask, render_template, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 import sqlalchemy.types as types
 from flask_wtf import Form
-from wtforms import TextField
+from wtforms import TextField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['AQLALCHEMY_DATABASE_URI'] = 'sqlite:////temp/test.db'
 db = SQLAlchemy(app)
-
+app.debug = True
+app.secret_key = 'b\xdfp\xee-\xce\x9c\x15N]D\xb3\x01\x1f\x8a)!1x8x9\xc6R\x18y'
 #class EqType(types.TypeDecorator):
  #   impl = types.Interger
 
@@ -16,7 +17,12 @@ db = SQLAlchemy(app)
  #   __tablename__ = 'course'
     
 class MyForm(Form):
-    name = TextField('name', validators = [DataRequired()])
+    number = TextField('number', validators = [DataRequired()])
+    Conversion = SelectField('Conversion')
+    Conversion2 = SelectMultipleField('Conversion2', choices=[('cpp', 'c++'),('py','Python')])
+    Conversion3 = SelectMultipleField('Conversion3')
+    
+    
 
 conversion = db.Table('conversion',
 db.Column('fahrenheit_unit',db.Integer, db.ForeignKey('fahrenheit.f_id')),
@@ -60,21 +66,25 @@ db.session.commit()
 
 
 
-@app.route('/wtf', methods = ('GET' , 'POST'))
+@app.route('/wtf', methods = ['GET' , 'POST'])
 def wtf():
-    #form = MyForm()
-    #if form.validate_on_submit():
-     #   return ("it Works")
-    return render_template('TempWTF.html')
-    return render_template('wtfTemp.html') # d do not work
-    return render_template('layout.html') # i work
+    #choices=[('cpp', 'c++'),('py','python')]
+    form = MyForm()
+    form.Conversion3.choices=[('cpp', 'c++'),('py','python')]
+    a = False
+    val = 0
+    if form.validate_on_submit():
+        return ("it Works")
+    #return render_template('TempWTF.html')
+    return render_template('wftTemp.html', form=form, a=a, val=val) # d do not work
+    #return render_template('layout.html') # i work
 @app.route('/')
 def initial_page():
     return "hello World"
 
-#@app.route('/units')
-#def subsequent_page():
- #    return render_template('layout.html')
+@app.route('/units')
+def subsequent_page():
+     return render_template('layout.html')
 
 
 if __name__=='__main__':

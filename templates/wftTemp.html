@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
-  
+  <head>
+
+   </head>
   <body>
-    <form method="POST" action="/">
-      {{ from.scrf_token }
-      {{form.name.label}} {{ from.name(size=20) }}
-      <input type="submit" value="GO">
+    <form method="POST" action="db.py">
+      {{form.number.label}} {{form.number(size = 20)}}
+      {{form.Conversion.label}} {{ form.Conversion.choices }}
+      {{form.Conversion2.label }} {{form.Conversion2(size = 1)}}
+      {{form.Conversion3.label }} {{form.Conversion3.choices }} {{form.Conversion3(size=1)}}
+      <input type="submit" value="Submit">
+     </form>
+
+    {% if a %}
+      { val }
+    {% else %}
+     
+    {% endif %}
  </body>
 
 </html>
