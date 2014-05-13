@@ -1,2 +1,0 @@
-import flaks from Flask
-from flask.ext.sqlalchemy import Sq

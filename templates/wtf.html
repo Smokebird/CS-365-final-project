@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Conversoin</title>
+  </head>
+
+  <body>
+    <form method=post action="/">
+      {{ form.csrf_token }}
+      {{ form.Number.label }} {{ form.Number(size=10) }}
+      {{ form.Con.label }}
+      <input type="submit" value="Submit">
+    </form>
+ <!--   <div id=value>
+    {{% if a %}}
+        {{ val }}
+    {{% else %}}
+        {{ False }}
+    {{% endif %} -->
+    </div>
+  </body>
+
+  
+
+</html>
