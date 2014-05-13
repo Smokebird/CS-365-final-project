@@ -2,11 +2,13 @@
 <html>
   
   {% block head %}
-      {% block title %}Conversion{% endblock %}
+      {% block title %}<title>Conversion</title>{% endblock %}
   {% endblock %}
-  
+
   {% block body %}
-     <p>hi there</p>
-  {% block body %}
+     <form>
+       <button type="submit" name="submit" value="CT" >Temperature Conversion</button>
+       <button type="sumbit" name="submit" value="MakeOwn">Make Own Conversion</button>
+  {% endblock %}
 
 </html>

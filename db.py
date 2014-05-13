@@ -1,9 +1,10 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask.ext.sqlalchemy import SQLAlchemy
 import sqlalchemy.types as types
 from flask_wtf import Form
 from wtforms import TextField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired
+
 
 app = Flask(__name__)
 app.config['AQLALCHEMY_DATABASE_URI'] = 'sqlite:////temp/test.db'
@@ -16,6 +17,10 @@ app.secret_key = 'b\xdfp\xee-\xce\x9c\x15N]D\xb3\x01\x1f\x8a)!1x8x9\xc6R\x18y'
 #class Temp(db.Model):
  #   __tablename__ = 'course'
     
+
+
+
+
 class MyForm(Form):
     number = TextField('number', validators = [DataRequired()])
     Conversion = SelectField('Conversion')
@@ -64,9 +69,17 @@ db.session.add_all([fahrenheit1])
 db.session.commit()
 
 
+@app.route('/Homepage', methods = ['GET', 'POST'])
+def HP():
+    flash('hi')
+    if request.method == 'POST':
+        flash('post')
+        if request.form['submit'] == 'CT':
+            flash("hi there i can show")
+            return redirect(url_for(('wtform')))
+    return render_template('Homepage.html')
 
-
-@app.route('/wtf', methods = ['GET' , 'POST'])
+@app.route('/wtform', methods = ['GET' , 'POST'])
 def wtf():
     #choices=[('cpp', 'c++'),('py','python')]
     form = MyForm()
