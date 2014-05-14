@@ -28,7 +28,7 @@ def calculations():
 	# Couldn't find a way to get form values here, thought javascript would work better for getting values from forms
 	# Currently looking into using javascript
 	
-
+#this last part probably not necessary, since it's done in the other file
 @app.route('/custom_units', methods=['POST'])
 def custom_units(units_page_two):
 	session['custom_unit'] = request.form['something_here']
