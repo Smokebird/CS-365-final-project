@@ -71,10 +71,10 @@ class Custom_Unit(db.Model):
 		self.custom_unit_name
 
 	def unit_validation(custom_unit_name):
-	"""validate unit name using regular expression to make sure it doesn't contain any of these characters"""
-	if re.match("[@!#$%^&*()0-9*+=~`-/><;:[]]+"):
+#	'''validate unit name using regular expression to make sure it doesn't c#ontain any of these characters'''
+            if re.match("[@!#$%^&*()0-9*+=~`-/><;:[]]+"):
 		return False
-	return True
+            return True
 
 
 class Custom_Convert(db.Model):
@@ -107,7 +107,7 @@ def wtf():
     form = TempForm()
     a = False
     if form.validate_on_submit():
-        #return redirect(url_for(units))
+        return redirect(url_for(units))
         a = True
         val = 5
    # return render_template('TempWTF.html')
@@ -117,12 +117,11 @@ def wtf():
 
 @app.route('/Homepage', methods = ['GET', 'POST'])
 def HP():
-    flash('hi')
-    if request.method == 'POST':
-        flash('post')
-        if request.form['submit'] == 'CT':
-            flash("hi there i can show")
-            return redirect(url_for(('wtform')))
+
+    #if request.form['submit'] == 'CT': # return bad request
+    if request.method == "POST": #eturn nothing 
+        flash('posted')
+        #return redirect(url_for(('wtform')))
     return render_template('Homepage.html')
 
 @app.route('/abc', methods = ['GET' , 'POST'])
