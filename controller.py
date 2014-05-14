@@ -25,9 +25,31 @@ def calculations():
 	convert_val7 = Kelvin.query.filter(Kelvin.unit_conversion_frac).second()
 	convert_val8 = Kelvin.query.filter(Kelvin.unit_conversion_num).second() 
 	#calculations done here
-	# Couldn't find a way to get form values here, thought javascript would work better for getting values from forms
-	# Currently looking into using javascript
-	
+	#still needs to be completed for custom cases
+	if intial_unit == 'celsius':
+		if conversion_unit == 'fahrenheit':
+			conversion_val = (number * convert_val1) + convert_val2
+		else if conversion_unit == 'kelvin':
+			conversion_val = (number * convert_val5) + convert_val6
+		else
+			conversion_val = (number) #some calculation specified by user
+
+	else if initial_unit == 'fahrenheit':
+		if conversion_unit == 'celsius':
+			conversion_val = (number * convert_val3) - convert_val4
+		else if conversion_unit = 'kelvin':
+			conversion_val = (number * convert_val7) + convert_val8
+
+	else if initial_unit == 'kelvin':
+		if conversion_unit == 'celsius':
+			convert_val = (number * convert_val5) - convert_val6
+		else if conversion_unit == 'fahrenheit':
+			convert_val = (number * convert_val7) - convert_val8
+		else
+		conversion_val = (number) #some custom unit calculations here
+
+	else if initial_unit = 'other_custom_unit':
+		convert_val = (number) #some calculation specified by user
 #this last part probably not necessary, since it's done in the other file
 @app.route('/custom_units', methods=['POST'])
 def custom_units(units_page_two):
