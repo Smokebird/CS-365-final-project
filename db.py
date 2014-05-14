@@ -62,6 +62,36 @@ class Kelvin(db.Model):
     unit_conversion_add = (db.Float)
     unit_conversion_multiply = (db.Integer)
 
+class Custom_Unit(db.Model):
+	__tabename__='custom_unit'
+	id=db.Column(db.Integer, primary_key=True)
+	custom_unit_name = db.Column(db.String(30))
+
+	def __init__(self, custom_unit_name):
+		self.custom_unit_name
+
+	def unit_validation(custom_unit_name):
+	"""validate unit name using regular expression to make sure it doesn't contain any of these characters"""
+	if re.match("[@!#$%^&*()0-9*+=~`-/><;:[]]+"):
+		return False
+	return True
+
+
+class Custom_Convert(db.Model):
+	__tabename__ = 'custom_unit_convert'
+	id = db.Column(db.Integer, primary_key=True)
+	custom_convert = db.Column(db.String(30))
+
+	def __init__(self, custom_convert):
+		self.custom_convert = custom_convert
+
+def unit_validation(custom_unit_name):
+	"""validate unit name using regular expression to make sure it doesn't contain any of these characters"""
+	if re.match("[@!#$%^&*()0-9*+=~`-/><;:[]]+"):
+		return False
+	return True
+
+
 db.drop_all
 db.create_all()
 conversion1 = Celsius(c_id=1, unit_name='clss', unit_conversion_multiply = 1.8, unit_conversion_add = 32)
