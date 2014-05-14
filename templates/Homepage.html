@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  
+  {% block head %}
+      {% block title %}<title>Conversion</title>{% endblock %}
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='Homepage.css')}}"/>
+  {% endblock %}
+
+  {% block body %}
+      <body>
+     <form>
+       <button type="submit" name="submit" value="CT" >Temperature Conversion</button>
+       <button type="sumbit" name="submit" value="MakeOwn">Make Own Conversion</button>
+       </form>
+     <p>hi there css could work</p>
+     </body>
+
+    
+  {% endblock %}
+
+</html>
