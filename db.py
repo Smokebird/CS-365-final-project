@@ -101,7 +101,7 @@ db.session.add_all([fahrenheit1])
 
 db.session.commit()
 
-
+#this is important
 @app.route('/wtf', methods = ['GET','POST'])
 def wtf():
     form = TempForm()
@@ -115,13 +115,17 @@ def wtf():
     #return render_template('layout.html') # i work
 
 
+# this is important
 @app.route('/Homepage', methods = ['GET', 'POST'])
 def HP():
 
     #if request.form['submit'] == 'CT': # return bad request
-    if request.method == "POST": #eturn nothing 
-        flash('posted')
-        #return redirect(url_for(('wtform')))
+    if request.method == "POST":
+        if request.form['submit'] == 'CT':
+            flash('posted')
+            return redirect(url_for(('wtf')))
+        else:
+            return redirect('/')
     return render_template('Homepage.html')
 
 @app.route('/abc', methods = ['GET' , 'POST'])
