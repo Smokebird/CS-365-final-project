@@ -1,16 +1,13 @@
 body{
-color:#5AAEFF;
 background-color:#000000;
+color:#5AAEFF;
 text-align:center;
 }
 
-
-form {
-   display:inline-block;
-   align:center; 
+form{
+    display:inline-block;
+    text-align:center;
 }
-
-
 
 #Head{
     font-size:20px;

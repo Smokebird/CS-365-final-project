@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Create Own Conversion</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='create.css')}}"/>
   </head>
   
   <body>
-    <form>
-      <input type="text" name="Funit">
-      <input type="text" name="eq">
-      <input type="text" naem="Sunit"'>
-      <input type="submit" name="submit">
+    <div id="Head">
+      <h1>Create Own Unit</h1>
+      </div>
+    <form methode="POST" action="/create" >
+      {{ form.Conversion.label }}</br> {{ form.Conversion(size=10) }}</br>
+      {{ form.unit1(size=10)}} to {{ form.unit2(size=10)}}</br>
+      <input type="submit" name="submit" value="Submit">
     </form>
   </body>
 

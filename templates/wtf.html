@@ -2,10 +2,14 @@
 <html>
   <head>
     <title>Temperature Conversoin</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='TempCon.css')}}"/>
   </head>
 
   <body>
-    <form method=post action="/">
+    <div id="Head">
+	<h1>Conversions</h1>
+	</div>
+    <form method="POST" action="/wtf">
       {{ form.csrf_token }}
       {{ form.Number.label }} {{ form.Number(size=10) }}
       {{ form.Con.label }}

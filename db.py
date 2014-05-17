@@ -18,7 +18,10 @@ app.secret_key = 'b\xdfp\xee-\xce\x9c\x15N]D\xb3\x01\x1f\x8a)!1x8x9\xc6R\x18y'
  #   __tablename__ = 'course'
 
 
-
+class CreateForm(Form):
+    Conversion = TextField('Conversion', validators = [DataRequired()])
+    unit1 = TextField('unit1', validators = [DataRequired()])
+    unit2 = TextField('unit2', validators = [DataRequired()])
 
 class MyForm(Form):
     number = TextField('number', validators = [DataRequired()])
@@ -101,15 +104,20 @@ db.session.add_all([fahrenheit1])
 
 db.session.commit()
 
+@app.route('/create', methods =['GET','POST'])
+def create():
+    form=CreateForm()
+    if form.validate_on_submit():
+        return redirect('/units')
+    return render_template('Creat.html', form=form)
+
 #this is important
 @app.route('/wtf', methods = ['GET','POST'])
 def wtf():
     form = TempForm()
     a = False
     if form.validate_on_submit():
-        return redirect(url_for(units))
-        a = True
-        val = 5
+        return redirect("/units")
    # return render_template('TempWTF.html')
     return render_template('wtf.html', form=form, a = a) # d do not work
     #return render_template('layout.html') # i work
@@ -125,21 +133,10 @@ def HP():
             flash('posted')
             return redirect(url_for(('wtf')))
         else:
-            return redirect('/')
+            return redirect('/create')
     return render_template('Homepage.html')
 
-@app.route('/abc', methods = ['GET' , 'POST'])
-def abc():
-    #choices=[('cpp', 'c++'),('py','python')]
-    form = MyForm()
-    form.Conversion3.choices=[('cpp', 'c++'),('py','python')]
-    a = False
-    val = 0
-    if form.validate_on_submit():
-        return ("it Works")
-    #return render_template('TempWTF.html')
-    return render_template('wftTemp.html', form=form, a=a, val=val) # d do not work
-    #return render_template('layout.html') # i work
+
 @app.route('/')
 def initial_page():
     return "hello World"

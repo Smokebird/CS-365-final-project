@@ -1,23 +1,28 @@
 
 body{
-background-coler:#000000;
-background:#000000;
+background-color:#000000;
 text-align:center;
 }
 
 form{
-background-coler:#0000000;
+
 align:center;
 }
 
-p{
-background-coler:#000000;
-background:#000000;
-text-align:center;
-}
+
 
 button{
 height:3cm;
 width:4cm;
-color:0000FF
+color:#000000;
+boarder-color:#5AAEFF;
+background-color:#5AAEFF;
+}
+
+#Head{
+    font-size:20px;
+    text-align:center;
+    color:#5AAEFF;
+    height:90px;
+    text-decoration:underline;
 }
