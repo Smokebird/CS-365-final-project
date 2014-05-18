@@ -3,7 +3,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 import sqlalchemy.types as types
 from flask_wtf import Form
 from wtforms import TextField, SelectMultipleField, SelectField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Required
 
 
 app = Flask(__name__)
@@ -25,13 +25,16 @@ class CreateForm(Form):
 
 class MyForm(Form):
     number = TextField('number', validators = [DataRequired()])
-    Conversion = SelectField('Conversion')
+   
+    Conversion = SelectMultipleField('Conversion', validators=[Required()])
     Conversion2 = SelectMultipleField('Conversion2', choices=[('cpp', 'c++'),('py','Python')])
     Conversion3 = SelectMultipleField('Conversion3')
 
 class TempForm(Form):
+    myChoices=[('none',' '),('CF', 'Celsius to Fahrenheit'),('CK','Celsius to Kelvin'),('FC','Fahrenheit to Celsius'), ('FK', 'Fahrenheit to Kelvin'), ('KC', 'Kelvin to Celsius'),('KF','Kelvin to Fahrenheit')]
     Number = TextField('Number', validators=[DataRequired()])
-    Con = SelectField('Conversion', validators=[DataRequired()])    
+   
+    Con = SelectField('Conversion', choices=myChoices  ,validators=[Required()])    
     
 
 conversion = db.Table('conversion',
